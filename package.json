@@ -1,0 +1,26 @@
+{
+  "name": "caching-proxy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henrynnamani/caching-proxy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/henrynnamani/caching-proxy/issues"
+  },
+  "homepage": "https://github.com/henrynnamani/caching-proxy#readme",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "commander": "^14.0.1",
+    "express": "^5.1.0"
+  }
+}
