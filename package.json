@@ -18,9 +18,14 @@
   },
   "homepage": "https://github.com/henrynnamani/caching-proxy#readme",
   "description": "",
+  "bin": {
+    "caching-proxy": "./index.js"
+  },
   "dependencies": {
+    "@upstash/redis": "^1.35.4",
     "axios": "^1.12.2",
     "commander": "^14.0.1",
+    "dotenv": "^17.2.2",
     "express": "^5.1.0"
   }
 }
