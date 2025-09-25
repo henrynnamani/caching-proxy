@@ -1,28 +1,44 @@
 #!/usr/bin/env node
 
-import { Command } from 'commander'
-import startServer from './server.js'
+import { Command } from "commander";
+import { clearCache, startServer } from "./server.js";
 
-const program = new Command()
+const program = new Command();
 
-program.version('1.0').description('Cache server proxy')
+program.version("1.0").description("Cache server proxy");
 
-program.description('Spin up proxy server').requiredOption('-p, --port <port>', 'Port to run server on').requiredOption('-o, --origin <origin>', 'Origin server to which requests will be forwarded to').action((options) => {
-    const port = parseInt(options.port)
+program.command("--clear-cache").action((options) => {
+  clearCache();
+});
 
-    if(isNaN(port) || port < 1 || port > 65535) {
-        console.error('Port is invalid')
-        return;
+program
+  .option("--clear-cache", "Clear the Redis cache before starting")
+  .option("-p, --port <port>", "Port to run server on")
+  .option(
+    "-o, --origin <origin>",
+    "Origin server to which requests will be forwarded to"
+  )
+  .action((options) => {
+    const port = parseInt(options.port);
+
+    if (options.clearCache) {
+      clearCache();
+      return;
+    }
+
+    if (isNaN(port) || port < 1 || port > 65535) {
+      console.error("Port is invalid");
+      return;
     }
 
     try {
-        new URL(options.origin)
-    } catch(err) {
-        console.error('Invalid origin URL')
-        return;
+      new URL(options.origin);
+    } catch (err) {
+      console.error("Invalid origin URL");
+      return;
     }
 
-    startServer(options)
-})
+    startServer(options);
+  });
 
-program.parse(process.argv)
+program.parse(process.argv);
