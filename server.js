@@ -1,6 +1,4 @@
 import express from "express";
-import fs from "fs";
-import path from "path";
 import { Redis } from "@upstash/redis";
 import * as dotenv from "dotenv";
 import axios from "axios";
